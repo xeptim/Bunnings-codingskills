@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package>
+	<job>
+		<!-- required references to objects -->
+		<reference object="ADODB.Recordset" />
+		<reference object="Scripting.FileSystemObject" />
+
+		<!-- required libraries -->
+		<script language="vbscript" src="vbs\Log.vbs"></script>
+		<script language="vbscript" src="vbs\FileUtil.vbs"></script>
+
+
+		<!-- main script file -->
+		<script language="vbscript" src="vbs\main.vbs"></script>
+	</job>
+</package>
