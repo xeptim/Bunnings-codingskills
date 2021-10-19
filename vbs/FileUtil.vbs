@@ -9,12 +9,12 @@ Class FileUtilImpl
 	'! Opens a file for reading.
 	'! @param filepath <String> relative path to file to open
 	'! @return <ADODB.Stream> open stream ready for reading
-	Public Function OpenFile(filepath)
+	Public Function OpenFileForReading(filepath)
 		Dim objStream : Set objStream = CreateObject("ADODB.Stream")
 		objStream.CharSet = "utf-8"
 		objStream.Open
 		objStream.LoadFromFile(filepath)
-		Set OpenFile = objStream
+		Set OpenFileForReading = objStream
 	End Function
 
 
@@ -25,18 +25,24 @@ Class FileUtilImpl
 		ReadLine = objStream.ReadText(adReadLine)
 	End Function
 
-	'! Writes supplied file contents to a file.  Uses ADODB.Stream so can handle UTF-8 encoding.  All
-	'! paths are virtual, mapped to physical paths inside this function.  Any existing content in the
-	'! file will be lost/overwritten.
-	'! @param strVirtualPath <String> file to write to
-	'! @param strFileData <String> content to write to file
-	Public Function WriteFileContents(strVirtualPath, strFileData)
-		CMS.Debug "Writing file " & strVirtualPath
+	'! @todo
+	Public Function OpenFileForWriting()
 		Dim objStream : Set objStream = CreateObject("ADODB.Stream")
 		objStream.CharSet = "utf-8"
 		objStream.Open
-		objStream.WriteText strFileData
-		objStream.SaveToFile Server.MapPath(strVirtualPath), 2
+		Set OpenFileForWriting = objStream
+	End Function
+
+	'! @todo
+	Public Function WriteLine(objStream, text)
+		objStream.WriteText text & vbCrLf
+	End Function
+
+
+
+	'! @todo
+	Public Function SaveFile(objStream, filepath)
+		objStream.SaveToFile filepath, adSaveCreateOverWrite
 		objStream.Close
 		Set objStream = Nothing
 	End Function
