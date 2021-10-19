@@ -9,7 +9,6 @@
 		<script language="vbscript" src="vbs\Log.vbs"></script>
 		<script language="vbscript" src="vbs\FileUtil.vbs"></script>
 
-
 		<!-- main script file -->
 		<script language="vbscript" src="vbs\main.vbs"></script>
 	</job>

@@ -1,4 +1,6 @@
 *.log
+package-lock.json
 
 # ignore directories
 log/
+node_modules/
