@@ -50,7 +50,7 @@ async function main() {
 			// add the product to the catalogue
 			resultData.push(obj);
 
-			// add the barcode to the reference list
+			// add the barcode to the reference list for future exclusion
 			barcodeRef.push(barcode);
 
 		}
