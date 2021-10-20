@@ -44,6 +44,7 @@ Class LogImpl
 		End If
 
 		If Len(msg) > 0 Then
+			WScript.Echo Timestamp & Replace(msg, vbCrLf, " ")
 			m_objLogFile.WriteLine(Timestamp & Replace(msg, vbCrLf, " "))
 		End If
 	End Function

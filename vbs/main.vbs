@@ -1,5 +1,5 @@
 Option Explicit
-'! Script: Bunnings-codingskills
+'! Script: Bunnings-codingskills/vbs/main.vbs
 '! Generates a merged superset catalogue given multiple source catalogs.
 '!
 '! @author Tim Davison
@@ -15,6 +15,7 @@ Dim objCatalog : Set objCatalog =  CreateObject("Scripting.Dictionary")
 
 ' for each company provided
 Dim i : For Each i In arrCompanyList
+	Log.Info "Loading data for company '" & i & "'..."
 
 	' load the catalogue and supplier info for the company first
 	Dim objSrcCatalog : Set objSrcCatalog = LoadCatalog(i)
@@ -25,15 +26,17 @@ Dim i : For Each i In arrCompanyList
 Next
 
 ' write the master data (optional)
+Log.Info "Generating master data..."
 WriteMasterData()
 
 ' write catalog data
+Log.Info "Generating catalog output..."
 WriteCatalogData()
 
 Log.Info "Catalgoue merge complete."
 Log.RunTime
 
-'! @todo
+'! Writes the full set of master data to an output file.
 Function WriteMasterData()
 	Dim objStream : Set objStream = FileUtil.OpenFileForWriting()
 
@@ -55,7 +58,7 @@ Function WriteMasterData()
 
 End Function
 
-'! @todo
+'! Writes the merged catalog to an output file.
 Function WriteCatalogData()
 	Dim objStream : Set objStream = FileUtil.OpenFileForWriting()
 
@@ -74,7 +77,8 @@ Function WriteCatalogData()
 
 End Function
 
-'! @todo
+'! Adds products for the specified company to the list of products in the fill master data list.  Duplicate barcodes are ignored/skipped.
+'! @param companyID <String> identifies the company to load products for
 Function AddProducts(companyID)
 	Dim objStream : Set objStream = FileUtil.OpenFileForReading(".\input\barcodes" & companyID & ".csv")
 
@@ -110,7 +114,11 @@ Function AddProducts(companyID)
 	Loop
 End Function
 
-'! @todo
+'! Checks whether a product is already in the merged catalogue list.  Equivalency determine by a combination of all three function arguments.
+'! @param strSKU <String> identifies the product (with potential collisions)
+'! @param strDescription <String> product description
+'! @param strCompanyID <String> identifies the source company
+'! @return True|False whether there already exists a product in the list with the same attributes
 Function ProductExistsInCatalogue(strSKU, strDescription, strCompanyID)
 	ProductExistsInCatalogue = False
 
@@ -126,7 +134,9 @@ Function ProductExistsInCatalogue(strSKU, strDescription, strCompanyID)
 	' if got to here then the product was not found - will return false
 End Function
 
-'! @todo
+'! Loads catalogue data for the specified company.
+'! @param companyID <String> identifies the company to load data for
+'! @return <Dictionary> list of products for that company, SKU's are keys
 Function LoadCatalog(companyID)
 	Dim objData : Set objData = CreateObject("Scripting.Dictionary")
 	Dim objStream : Set objStream = FileUtil.OpenFileForReading(".\input\catalog" & companyID & ".csv")
@@ -143,8 +153,9 @@ Function LoadCatalog(companyID)
 	Set LoadCatalog = objData
 End Function
 
-
-'! @todo
+'! Loads supplier data for the specified company.
+'! @param companyID <String> identifies the company to load data for
+'! @return <Dictionary> list of suppliers for that company, SupplierID's are keys
 Function LoadSuppliers(companyID)
 	Dim objData : Set objData = CreateObject("Scripting.Dictionary")
 	Dim objStream : Set objStream = FileUtil.OpenFileForReading(".\input\suppliers" & companyID & ".csv")
@@ -161,7 +172,7 @@ Function LoadSuppliers(companyID)
 	Set LoadSuppliers = objData
 End Function
 
-'! @todo
+'! Writes a string representation of a Dictionary object to standard output.  Used for debugging only.  Recursive function.
 Function DictionaryToString(obj, prefix)
 	Dim i : For Each i In obj.Keys
 		If TypeName(obj.Item(i)) <> "Dictionary" Then

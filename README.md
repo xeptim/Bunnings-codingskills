@@ -61,6 +61,7 @@ node js\main.js
 	- in both solutions the companies to iterate over is declared in code
 	- a better solution may be to allow command-line arguments or reading in a config file
 	- both solutions depend on a strict naming standard, a config file or alternative way of loading files would make sense if this was to be used more extensively
+- VBScript solution includes a quick-and-dirty implementation of logging and file utility packages.  I did not go to this extent with the Node solution, presumably in an enterprise environment these frameworks would already be part of the infrastructure and avilable for use.
 - VBScript solution has poor CSV parsing, heavily dependant on valid input being provided, with no mid-value commas allowed and does not cater for quotes around values
 - Neither solution handles errors particularly well
 - Neither solution has any unit testing implemented

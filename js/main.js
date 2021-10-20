@@ -1,6 +1,6 @@
 /**
- * main.js
- * TODO
+ * Script: Bunnings-codingskills/js/main.js
+ * Generates a merged superset catalogue given multiple source catalogs.
  *
  * @author Tim Davison
  * @created 19/10/2021
@@ -20,11 +20,13 @@ main();
  * Generates a marged catalogue based on the data loaded from files for the sources specified.
  */
 async function main() {
+	console.log('Catalgoue merge starting...')
 	var resultData = [];  // final result data to be written to CSV
 	var barcodeRef = [];  // reference data to prevent duplicate products with the same barcode
 
 	// iterate over supplied sources
 	for (let i = 0; i < sources.length; i++ ) {
+		console.log('Loading data for company \'' + sources[i] + '\'...');
 
 		// load in catalog and barcode data - supplier data seems not to be used
 		let srcCatalogData = await readCatalogData(sources[i]);
@@ -57,10 +59,12 @@ async function main() {
 	}
 
 	// write output CSV
+	console.log('Generating catalog output...');
 	const outStream = fs.createWriteStream('./output/result_output.csv');
 	fastcsv.write(resultData, { headers: true })
 	.pipe(outStream);
 
+	console.log('Catalgoue merge complete.');
 }
 
 /**

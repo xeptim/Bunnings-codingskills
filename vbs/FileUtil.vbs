@@ -17,7 +17,6 @@ Class FileUtilImpl
 		Set OpenFileForReading = objStream
 	End Function
 
-
 	'! Read a line from the supplied file stream
 	'! @param objStream <ADODB.Stream> open stream that can be read from
 	'! @return <String> contents of the next line of the file
@@ -25,7 +24,8 @@ Class FileUtilImpl
 		ReadLine = objStream.ReadText(adReadLine)
 	End Function
 
-	'! @todo
+	'! Opens a file for writing.
+	'! @return <ADODB.Stream> open stream ready for writing
 	Public Function OpenFileForWriting()
 		Dim objStream : Set objStream = CreateObject("ADODB.Stream")
 		objStream.CharSet = "utf-8"
@@ -33,14 +33,16 @@ Class FileUtilImpl
 		Set OpenFileForWriting = objStream
 	End Function
 
-	'! @todo
+	'! Writes a line to the supplied file stream.
+	'! @param objStream <ADODB.Stream> open stream that can be written to
+	'! @return <String> contents of the next line to write to file
 	Public Function WriteLine(objStream, text)
 		objStream.WriteText text & vbCrLf
 	End Function
 
-
-
-	'! @todo
+	'! Saves the contents of the supplied file output stream to a physical file.  Replaces any existing file if present.
+	'! @param objStream <ADODB.Stream> open stream that has been written to
+	'! @param filepath <String> relative path to file to save
 	Public Function SaveFile(objStream, filepath)
 		objStream.SaveToFile filepath, adSaveCreateOverWrite
 		objStream.Close
