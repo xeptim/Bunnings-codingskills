@@ -13,7 +13,9 @@ I have provided two solutions to the coding challenge using the following langua
 
 *Run*
 - From the repo root
-	cscript.exe main.wsf
+```
+cscript.exe main.wsf
+```
 
 *Outputs*
 - .\output\result_output.csv
@@ -33,12 +35,18 @@ I have provided two solutions to the coding challenge using the following langua
 
 *Packages*
 - Two packages are required to run
-```npm install csv-parser```
-```npm install fast-csv```
+```
+npm install csv-parser
+```
+```
+npm install fast-csv
+```
 
 *Run*
 - From the repo root
-```node js\main.js```
+```
+node js\main.js
+```
 
 *Outputs*
 - .\output\result_output.csv
