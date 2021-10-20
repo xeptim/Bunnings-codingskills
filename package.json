@@ -1,0 +1,24 @@
+{
+  "name": "bunnings-codingskills",
+  "version": "1.0.0",
+  "description": "npm install csv-parser\r #npm i -s csv-writer\r npm i -s fast-csv",
+  "main": "js/main.js",
+  "dependencies": {
+    "csv-parser": "^3.0.0",
+    "fast-csv": "^4.3.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node js/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xeptim/Bunnings-codingskills.git"
+  },
+  "author": "Tim Davison",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xeptim/Bunnings-codingskills/issues"
+  },
+  "homepage": "https://github.com/xeptim/Bunnings-codingskills#readme"
+}
