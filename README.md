@@ -17,29 +17,29 @@ I have provided two solutions to the coding challenge using the following langua
 
 *Outputs*
 - .\output\result_output.csv
--- the merged catalog requested
+	- the merged catalog requested
 - .\output\master_data.csv
--- additional info file including all data provided including suppliers and barcodes used to confirm output
--- optional, could be deactivated from within code
+	- additional info file including all data provided including suppliers and barcodes used to confirm output
+	- optional, could be deactivated from within code
 - log files
--- located in .\log
--- new log file created per day
+	- located in .\log
+	- new log file created per day, appended to on each run
 
 ### Node.js
 
 *Pre-requisites*
 - Node.js installed
--- tested/working on v8.17.0
+	- tested/working on v8.17.0
 
 *Packages*
 - Two packages are required to run
-	npm install csv-parser
-	npm install fast-csv
+```npm install csv-parser```
+```npm install fast-csv```
 
 *Run*
 - From the repo root
-	node js\main.js
+```node js\main.js```
 
 *Outputs*
 - .\output\result_output.csv
--- the merged catalog requested
+	- the merged catalog requested
